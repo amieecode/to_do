@@ -9,6 +9,7 @@ __pycache__/
 #Ignore pipenv environment 
 .venv/
 Pipfile.lock
+Pipfile
 
 # Distribution / packaging
 .Python
