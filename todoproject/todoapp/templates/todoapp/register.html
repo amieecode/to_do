@@ -8,8 +8,14 @@
 <body>
     <div class="wrapper">
         <h2>Register</h2>
+        {% if messages %}
+          {% for message in messages %}
+            <h4 style="color:firebrick;">{{message}}</h4>
+          {% endfor %}
+        {% endif %}
 
-        <form action="#" methods="POST">
+        <form action="#" method="POST">
+            {% csrf_token %}
             <div class="input-box">
                 <input type="text" placeholder="Create a usrename" required name="username">
             </div>
@@ -21,7 +27,7 @@
             </div>
             <div class="policy"></div>
             <div class="input-box button">
-                <input type="submit" value="Login">
+                <input type="submit" value="Register">
             </div>
             <div class="text">
                 <h3>
@@ -137,5 +143,5 @@
     text-decoration: underline;
   }
   
-  </style>
+</style>
 </html>
