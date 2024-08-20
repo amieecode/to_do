@@ -8,4 +8,4 @@ class todo(models.Model):
     status = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.todo_list
+        return self.todo_name
