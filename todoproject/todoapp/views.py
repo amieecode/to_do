@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .models import todo
+
 # Create your views here.
 
 def home(request):
@@ -10,6 +11,7 @@ def home(request):
         task = request.POST.get('task')
         new_todo = todo(user=request.user, todo_name=task)
         new_todo.save()
+        return redirect('home-page')
 
     all_todos = todo.objects.filter(user=request.user)
     context = {
@@ -54,9 +56,14 @@ def loginpage(request):
 
     return render(request, 'todoapp/login.html', {})  
 
+def LogoutView(request):
+    logout(request)
+    return redirect('login')
+
 def DeleteTask(request, name):
-    get_todo = todo.objects.get(user=request.user, todo_name=name)
-    get_todo.delete()
+    get_todo = todo.objects.filter(user=request.user, todo_name=name)
+    if get_todo.exists():
+        get_todo.delete()
     return redirect('home-page')
 
 def Update(request, name):

@@ -7,5 +7,8 @@ class todo(models.Model):
     todo_name= models.CharField(max_length=1000)
     status = models.BooleanField(default=False)
 
+    class Meta :
+        unique_together = ('user', 'todo_name')
+
     def __str__(self):
         return self.todo_name

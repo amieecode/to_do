@@ -8,6 +8,11 @@
 <section class="vh-100" style="background-color: #eee;">
     <div class="container py-5 h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 text-end">
+            <a href="{% url "logout" %}">
+                <button style="background: firebrick; color: white;" type="submit" class="btn btn-primary mb-2">Logout</button>
+            </a>
+        </div>
         <div class="col col-lg-9 col-xl-7">
           <div class="card rounded-3">
             <div class="card-body p-4">
@@ -26,7 +31,7 @@
                   <button type="submit" class="btn btn-primary">Add Task</button>
                 </div>
               </form>
-              <a href="#"><button style="background: firebrick; color: white;" type="submit" class="btn btn-primary">Logout</button></a>
+
               <table class="table mb-4">
                 <thead>
                   <tr>
