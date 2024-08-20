@@ -1,2 +1,2 @@
-# todo_project
-Here we have a todo list project
+# todo_apllication
+Here we have a simple todo application
