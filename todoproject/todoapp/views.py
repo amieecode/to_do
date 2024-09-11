@@ -83,10 +83,10 @@ def Update(request, name):
 def edit_task(request, name):
     #get the task to be updated 
     task = get_object_or_404(todo, user=request.user, todo_name=name)
-    if request.method == 'post':
+    if request.method == 'POST':
         new_name = request.POST.get('task')
         task.todo_name = new_name
         task.save()
         return redirect('home-page')
 
-    return render(request, 'todoapp/task_edit.html', {'task': task})
+    return render(request, 'todoapp/edit_task.html', {'task': task})
