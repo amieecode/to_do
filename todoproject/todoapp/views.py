@@ -2,7 +2,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import todo
 
 # Create your views here.
@@ -78,3 +78,15 @@ def Update(request, name):
     get_todo.status = True
     get_todo.save()
     return redirect('home-page')
+
+@login_required
+def edit_task(request, name):
+    #get the task to be updated 
+    task = get_object_or_404(todo, user=request.user, todo_name=name)
+    if request.method == 'post':
+        new_name = request.POST.get('task')
+        task.todo_name = new_name
+        task.save()
+        return redirect('home-page')
+
+    return render(request, 'todoapp/task_edit.html', {'task': task})

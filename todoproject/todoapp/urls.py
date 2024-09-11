@@ -8,4 +8,5 @@ urlpatterns = [
    path('logout/', views.LogoutView, name='logout'),
    path('delete-task/<str:name>/', views.DeleteTask, name='delete'),
    path('update/<str:name>/', views.Update, name='update'),
+   path('edit/<str:name>', views.edit_task, name='edit-task'),
 ]
