@@ -5,4 +5,4 @@ Here we have a simple todo application
 
 - Landing page to display ToDo list
 - Register, Login and Logout user
-- Add, Delete, and Complete tasks
+- Add, Edit, Delete, and Complete tasks
