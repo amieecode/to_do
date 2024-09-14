@@ -75,7 +75,7 @@ def DeleteTask(request, id):
 
 @login_required
 def Update(request, id):
-    get_todo = todo.objects.get(todo, user=request.user, id=id)
+    get_todo = get_object_or_404(todo, user=request.user, id=id)
     get_todo.status = True
     get_todo.save()
     return redirect('home-page')
