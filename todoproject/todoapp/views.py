@@ -10,6 +10,7 @@ from .models import todo
 def home(request):
     if request.method == 'POST':
         task = request.POST.get('task')
+    
         new_todo = todo(user=request.user, todo_name=task)
         new_todo.save()
         return redirect('home-page')
@@ -66,26 +67,27 @@ def LogoutView(request):
     return redirect('login')
 
 @login_required
-def DeleteTask(request, name):
-    get_todo = todo.objects.filter(user=request.user, todo_name=name)
-    if get_todo.exists():
-        get_todo.delete()
+def DeleteTask(request, id):
+    get_todo = get_object_or_404(todo, user=request.user, id=id)
+    get_todo.delete()
+    messages.success(request, 'Task deleted successfully!')
     return redirect('home-page')
 
 @login_required
-def Update(request, name):
-    get_todo = todo.objects.get(user=request.user, todo_name=name)
+def Update(request, id):
+    get_todo = todo.objects.get(todo, user=request.user, id=id)
     get_todo.status = True
     get_todo.save()
     return redirect('home-page')
 
 @login_required
-def edit_task(request, name):
+def edit_task(request, id):
     #get the task to be updated 
-    task = get_object_or_404(todo, user=request.user, todo_name=name)
+    task = get_object_or_404(todo, user=request.user, id=id)
+    
     if request.method == 'POST':
-        new_name = request.POST.get('task')
-        task.todo_name = new_name
+        task_name = request.POST.get('task')
+        task.todo_name = task_name
         task.save()
         return redirect('home-page')
 
